@@ -1,0 +1,80 @@
+create table if not exists amazon_fee_task(
+	id bigint(21) AUTO_INCREMENT COMMENT 'ID',
+  account_id varchar(50) not null COMMENT '账号ID',
+  account_name varchar(100) not null COMMENT '账号名称',
+  market_id varchar(50) not null COMMENT '站点ID',
+  market_name varchar(100) not NULL COMMENT '站点名称',
+  status tinyint(2) not null COMMENT '处理状态状态(0:未处理,1:处理中,2:处理失败,3:失败异常)',
+  message text COMMENT '信息',
+  create_time datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  driver_type varchar(50) COMMENT '驱动类型',
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8mb4 AUTO_INCREMENT=1 COMMENT='amazon费用采集任务表';
+
+create table if not exists amazon_fee_detail(
+	id bigint(21) AUTO_INCREMENT COMMENT 'ID',
+  task_id bigint(21) not null COMMENT '任务ID',
+  account_id varchar(50) not null COMMENT '账号ID',
+  account_name varchar(100) not null COMMENT '账号名称',
+  market_id varchar(50) not null COMMENT '站点ID',
+  market_name varchar(100) not NULL COMMENT '站点名称',
+  create_time datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  data_type varchar(100) COMMENT '数据类型',
+  date_range varchar(100) COMMENT '时间区间',
+  trans_date varchar(100) COMMENT '交易日期',
+  trans_type varchar(100) COMMENT '交易类型',
+  order_no varchar(100) COMMENT '订单编号',
+  product_name varchar(1000) COMMENT '商品名称',
+  product_price varchar(100) COMMENT '商品价格总额',
+  product_price_num decimal(12,2) COMMENT '商品价格总额（数字）',
+  promotion_fee varchar(100) COMMENT '促销返点总额',
+  promotion_fee_num decimal(12,2) COMMENT '促销返点总额（数字）',
+  amazon_fee varchar(100) COMMENT '亚马逊所收费用',
+  amazon_fee_num decimal(12,2) COMMENT '亚马逊所收费用（数字）',
+  other_fee varchar(100) COMMENT '其他费用',
+  other_fee_num decimal(12,2) COMMENT '其他（数字）',
+  total_income varchar(100) COMMENT '总计收入',
+  total_income_num decimal(12,2) COMMENT '总计（数字）',
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8mb4 AUTO_INCREMENT=1 COMMENT='amazon费用采集数据明细';
+
+create table if not exists amazon_fee_verify_code(
+	id bigint(21) AUTO_INCREMENT COMMENT 'ID',
+  account_id varchar(50) not null COMMENT '账号ID',
+  account_name varchar(100) not null COMMENT '账号名称',
+  market_id varchar(50) not null COMMENT '站点ID',
+  market_name varchar(100) not NULL COMMENT '站点名称',
+  deviceid varchar(200) COMMENT '设备ID',
+  code varchar(100) COMMENT '验证码信息',
+  sms varchar(500) COMMENT '短信内容',
+  sms_timestamp bigint(21) COMMENT '接收短信的时间戳',
+  create_time datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  status tinyint(2) not null COMMENT '处理状态状态(0:未使用,1:已使用)',
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8mb4 AUTO_INCREMENT=1 COMMENT='验证码记录表';
+
+create table if not exists amazon_fee_txt_detail(
+  id bigint(21) AUTO_INCREMENT COMMENT 'ID',
+  task_id bigint(21) not null COMMENT '任务ID',
+  account_id varchar(50) not null COMMENT '账号ID',
+  account_name varchar(100) not null COMMENT '账号名称',
+  market_id varchar(50) not null COMMENT '站点ID',
+  market_name varchar(100) not NULL COMMENT '站点名称',
+  create_time datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间', 
+  data_type varchar(100) COMMENT '数据类型',
+  date_range varchar(100) COMMENT '时间区间',
+  trans_date varchar(100) COMMENT '交易日期',
+  order_no varchar(100) COMMENT '订单编号',
+  sku varchar(100) COMMENT 'SKU',
+  trans_type varchar(100) COMMENT '交易类型',
+  pay_type varchar(100) COMMENT '付款类型',
+  pay_detail varchar(100) COMMENT '付款详情',
+  amount varchar(100) COMMENT '金额',
+  amount_num decimal(12,2) COMMENT '金额(数值)',
+  currency varchar(100) COMMENT '货币类型',
+  count int COMMENT '数量',
+  product_name varchar(1000) COMMENT '商品名称',
+  file_name varchar(100) COMMENT '文件名称',
+  file_path varchar(500) COMMENT '文件存放路径（绝对路径）',
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8mb4 AUTO_INCREMENT=1 COMMENT='amazon费用采集TXT文件数据明细';

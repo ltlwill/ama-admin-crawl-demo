@@ -1,0 +1,72 @@
+# 服务器配置
+server:
+  port: 9882
+  compression:
+    enabled: true
+
+spring:
+  application:
+    name: fee-crawl-service
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://x.y.z.w:3306/crawler_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=true&zeroDateTimeBehavior=convertToNull
+    username: usr
+    password: pwd
+    
+  # Spring data JPA配置
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 
+    properties:
+      hibernate:
+        #use-new-id-generator-mappings: false
+        hbm2ddl:
+          #auto: none
+          auto: none
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        #dialect: org.hibernate.dialect.Oracle10gDialect
+    #database: 
+    show-sql: true     
+# 日志
+logging: 
+  file:    path: 
+  config: classpath:log-config/logback-${spring.profiles.active}.xml
+
+app: 
+  crawler-config: 
+    login-url: https://sellercentral.amazon.com/signin
+    account-id: xx
+    account-name: yy
+    market-id: xx
+    market-name: yy
+    user-name: acc
+    password: accpwd
+  web-driver: 
+    # 驱动类型
+    driver-type: chrome
+    #driver-type: chrome-headless
+    #driver-type: phantomjs
+    # 文件下载存放根目录
+    download-dir: D:\web_drivers\downloads
+    #download-dir: D:\\chrome_downloads
+    # 驱动启动参数
+    arguments: 
+      - name: --user-data-dir
+        value: C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data for app
+      - name: --disable-gpu
+        value: 
+          
+    # chrome浏览器驱动路径
+    chrome-driver-path: D:\\web_drivers\\chromedriver_win32\\chromedriver.exe
+    # firefox浏览器驱动路径
+    gecko-driver-path: D:\\web_drivers\\geckodriver-v0.26.0-win64\\geckodriver.exe
+    # phantomjs 驱动路径
+    phantomjs-driver-path: D:\\web_drivers\\phantomjs-2.1.1-windows\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe
+  
+    
+    
+  
+
