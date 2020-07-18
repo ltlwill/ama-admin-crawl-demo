@@ -11,7 +11,7 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://x.y.z.w:3306/crawler_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=true&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://x.y.z.w:3306/crawler_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=true&zeroDateTimeBehavior=convertToNull
     username: usr
     password: pwd
     
@@ -32,7 +32,8 @@ spring:
     show-sql: true     
 # 日志
 logging: 
-  file:    path: 
+  file:
+    path: 
   config: classpath:log-config/logback-${spring.profiles.active}.xml
 
 app: 
