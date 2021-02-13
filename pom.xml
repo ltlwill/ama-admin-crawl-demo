@@ -24,7 +24,7 @@
         <phantomjsdriver.version>1.4.4</phantomjsdriver.version>
         <selenium-java.version>3.141.59</selenium-java.version>
         <pagehelper.version>4.1.6</pagehelper.version>
-        <htmlunit.version>2.36.0</htmlunit.version>
+        <htmlunit.version>2.37.0</htmlunit.version>
         <commons-lang3.version>3.10</commons-lang3.version>
 	</properties>
 
